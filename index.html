@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>신한정밀공업 경영진 Kick-off: New Chapter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #334155; /* slate-700 */
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .fade-in { animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; transform: translateY(20px); }
+        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+        
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            border-radius: 1.25rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .glass-card:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 10px 20px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Navigation Pill */
+        .nav-pill {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+        .nav-pill:hover { background-color: rgba(255, 255, 255, 0.8); }
+        .nav-pill.active {
+            background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            border-color: transparent;
+        }
+
+        /* Icon Box Gradient */
+        .icon-box {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            color: #2563eb;
+            box-shadow: inset 0 2px 4px rgba(255,255,255,0.8);
+        }
+
+        /* Custom Scrollbar */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Accordion */
+        .accordion-content { transition: max-height 0.3s ease-out, opacity 0.3s ease-out; max-height: 0; opacity: 0; overflow: hidden; }
+        .accordion-content.open { max-height: 500px; opacity: 1; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center mb-4">
+                <div class="flex items-center gap-3">
+                    <img src="http://www.신한정밀공업.com/img_up/shop_pds/ehompy0648/design/2025/logo.png" 
+                         alt="신한정밀공업 로고" 
+                         class="h-8 w-auto object-contain"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    
+                    <div class="hidden w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg">S</div>
+
+                    <div class="flex flex-col justify-center">
+                        <h1 class="text-lg font-bold text-slate-800 tracking-tight leading-none">신한정밀공업</h1>
+                        <span class="text-[10px] text-indigo-600 font-bold tracking-widest mt-0.5">PMI KICK-OFF</span>
+                    </div>
+                </div>
+                <span class="hidden sm:block text-xs font-bold bg-slate-100 text-slate-500 px-3 py-1.5 rounded-full border border-slate-200 tracking-wide uppercase">Confidential</span>
+            </div>
+            <nav class="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
+                <button class="nav-pill active px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap flex-shrink-0" onclick="switchTab('tab-vision')">1. 비전과 존중</button>
+                <button class="nav-pill px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap flex-shrink-0" onclick="switchTab('tab-opportunity')">2. 기회와 전략</button>
+                <button class="nav-pill px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap flex-shrink-0" onclick="switchTab('tab-roadmap')">3. 85-Day Plan</button>
+                <button class="nav-pill px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap flex-shrink-0" onclick="switchTab('tab-hr')">4. HR 파트너십</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 pt-44 pb-20 max-w-5xl">
+
+        <section id="tab-vision" class="tab-content block fade-in">
+            <div class="bg-gradient-to-r from-slate-800 via-slate-700 to-indigo-900 rounded-3xl p-8 md:p-12 text-white mb-8 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-500 rounded-full mix-blend-overlay filter blur-[100px] opacity-20 -translate-y-1/2 translate-x-1/4"></div>
+                <div class="relative z-10">
+                    <div class="flex items-center gap-2 mb-6">
+                        <span class="py-1 px-3 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-indigo-200 tracking-wide">PARTNERSHIP</span>
+                        <span class="h-px w-10 bg-white/20"></span>
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight tracking-tight">
+                        40년의 기술혼(魂),<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-white">글로벌 No.1 엔진</span>을 달다.
+                    </h2>
+                    <p class="text-slate-300 text-lg max-w-2xl leading-relaxed border-l-2 border-indigo-500 pl-4">
+                        신한정밀공업이 지켜온 <span class="text-white font-semibold">초정밀 가공 기술</span>에 
+                        <span class="text-white font-semibold">413억 원의 신규 자본</span>을 더해, 
+                        이제 더 높고 넓은 시장으로 비상합니다.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+                <div class="glass-card p-6 flex items-start gap-4">
+                    <div class="icon-box p-3 rounded-2xl shrink-0">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-800">413억</h3>
+                        <p class="text-sm text-slate-500 font-medium">신규 투자 완료<br><span class="text-xs text-slate-400">(NPL 260억 + 인수금융 153억)</span></p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 flex items-start gap-4">
+                    <div class="icon-box p-3 rounded-2xl shrink-0">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-800">Global</h3>
+                        <p class="text-sm text-slate-500 font-medium">핵심 고객 파트너십<br><span class="text-xs text-slate-400">(Mando, Inteva 등)</span></p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 flex items-start gap-4">
+                    <div class="icon-box p-3 rounded-2xl shrink-0">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-800">Tech</h3>
+                        <p class="text-sm text-slate-500 font-medium">초정밀 가공 기술<br><span class="text-xs text-slate-400">(미크론 단위 정밀도)</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                        <span class="w-1.5 h-6 bg-indigo-600 rounded-full"></span>
+                        성장과 도전의 역사 (매출 추이)
+                    </h3>
+                </div>
+                <div class="h-72 w-full">
+                    <canvas id="historyChart"></canvas>
+                </div>
+                <p class="text-center text-xs text-slate-400 mt-4">* 2022: 역대 최고 실적, 2024: 회생절차 개시, Future: 경영 정상화 목표</p>
+            </div>
+        </section>
+
+        <section id="tab-opportunity" class="tab-content hidden fade-in">
+            <div class="text-center mb-10">
+                <span class="text-indigo-600 font-bold text-sm tracking-widest uppercase bg-indigo-50 px-3 py-1 rounded-full">Strategic Pivot</span>
+                <h2 class="text-3xl font-bold text-slate-800 mt-4">위기를 기회로 바꾸는 <span class="text-indigo-600">필승 전략</span></h2>
+            </div>
+
+            <div class="glass-card p-8 mb-8 bg-gradient-to-b from-white to-slate-50 border-none">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="flex-1 text-center p-6 bg-white rounded-2xl shadow-sm border border-slate-100 opacity-60 grayscale">
+                        <div class="text-5xl mb-4">🚙</div>
+                        <h4 class="text-lg font-bold text-slate-600 mb-2">내연기관 (ICE)</h4>
+                        <ul class="text-sm text-slate-500 space-y-1">
+                            <li>일반 모터 샤프트</li>
+                            <li>단순 수출 모델</li>
+                            <li>운전자금 부족</li>
+                        </ul>
+                    </div>
+
+                    <div class="flex flex-col items-center text-indigo-500 animate-pulse">
+                        <span class="text-[10px] font-bold mb-2 tracking-widest">TRANSFORMATION</span>
+                        <svg class="w-10 h-10 rotate-90 md:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
+                    </div>
+
+                    <div class="flex-1 text-center p-6 bg-white rounded-2xl shadow-xl border-2 border-indigo-100 relative overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <div class="absolute top-0 left-0 w-full h-1.5 bg-indigo-500"></div>
+                        <div class="text-5xl mb-4">⚡</div>
+                        <h4 class="text-lg font-bold text-indigo-700 mb-2">미래차 (xEV)</h4>
+                        <ul class="text-sm text-slate-600 space-y-2 font-medium">
+                            <li class="flex items-center justify-center gap-2">
+                                <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                고회전 로터 샤프트
+                            </li>
+                            <li class="flex items-center justify-center gap-2">
+                                <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                경량 배터리 인클로저
+                            </li>
+                            <li class="flex items-center justify-center gap-2">
+                                <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                스마트 팩토리 솔루션
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-card p-6 border-l-4 border-red-400">
+                    <h3 class="font-bold text-slate-800 mb-3 flex items-center gap-2">
+                        <span class="bg-red-100 text-red-600 p-1 rounded">⚠️</span> 직면한 도전 (Threats)
+                    </h3>
+                    <ul class="space-y-3 text-sm text-slate-600">
+                        <li>• <strong>북미 현지화 압박:</strong> 현대차그룹의 공급망 재편</li>
+                        <li>• <strong>산업 패러다임 변화:</strong> 내연기관 부품 수요 감소</li>
+                        <li>• <strong>과거의 족쇄:</strong> 운전자금 부족 및 재무 위기</li>
+                    </ul>
+                </div>
+                <div class="glass-card p-6 border-l-4 border-indigo-500">
+                    <h3 class="font-bold text-slate-800 mb-3 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-600 p-1 rounded">🚀</span> 우리의 해법 (Solution)
+                    </h3>
+                    <ul class="space-y-3 text-sm text-slate-600">
+                        <li>• <strong>재무 건전성:</strong> 413억 자본 투입으로 리스크 완전 해소</li>
+                        <li>• <strong>R&D 집중:</strong> EV 전용 부품(샤프트, 기어) 기술 고도화</li>
+                        <li>• <strong>공정 혁신:</strong> 스마트 팩토리 도입으로 생산성 극대화</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-roadmap" class="tab-content hidden fade-in">
+            <div class="mb-8 flex flex-col md:flex-row justify-between items-end gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800">85-Day PMI Plan</h2>
+                    <p class="text-slate-500 text-sm mt-1">인수 후 초기 안정화 및 재도약을 위한 집중 실행 계획</p>
+                </div>
+                <div class="bg-white px-4 py-2 rounded-lg shadow-sm border border-slate-200">
+                    <div class="text-[10px] font-bold text-slate-400 mb-1 tracking-wider">PHASE LEGEND</div>
+                    <div class="flex gap-4 text-xs font-medium text-slate-600">
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>진단</span>
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>설계</span>
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-violet-500"></span>실행</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card p-4 md:p-8 overflow-hidden">
+                <div class="h-[500px] w-full">
+                    <canvas id="ganttChart"></canvas>
+                </div>
+            </div>
+            
+            <p class="text-center text-xs text-slate-400 mt-4">* 상기 일정은 PT에서 합의된 80일 세부 실행 계획을 기반으로 구성되었습니다.</p>
+        </section>
+
+        <section id="tab-hr" class="tab-content hidden fade-in">
+            <div class="bg-indigo-600 rounded-3xl p-10 text-white mb-8 text-center shadow-xl relative overflow-hidden">
+                 <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+                <h2 class="text-3xl font-bold mb-4 relative z-10">"사람이 전부입니다."</h2>
+                <p class="text-indigo-100 max-w-2xl mx-auto text-lg relative z-10 leading-relaxed">
+                    PE의 투자는 기계나 설비가 아닌, 그 기계와 설비를 움직이는 <span class="font-bold text-white border-b border-indigo-300 pb-0.5">임직원 여러분</span>에게 향합니다.<br>
+                    여러분의 성장이 곧 회사의 성장이 될 것입니다.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+                <div class="glass-card p-8 text-center hover:bg-white transition-colors group">
+                    <div class="w-14 h-14 mx-auto bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800">경청 (Listening)</h3>
+                    <p class="text-sm text-slate-500 mt-2">진단 이전에 현장의 목소리를<br>있는 그대로 듣겠습니다.</p>
+                </div>
+                <div class="glass-card p-8 text-center hover:bg-white transition-colors group">
+                    <div class="w-14 h-14 mx-auto bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800">공정 (Fairness)</h3>
+                    <p class="text-sm text-slate-500 mt-2">모두가 납득할 수 있는<br>명확한 기준을 세웁니다.</p>
+                </div>
+                <div class="glass-card p-8 text-center hover:bg-white transition-colors group">
+                    <div class="w-14 h-14 mx-auto bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800">성장 (Growth)</h3>
+                    <p class="text-sm text-slate-500 mt-2">성과의 과실을 함께 나누는<br>인센티브 구조를 만듭니다.</p>
+                </div>
+            </div>
+
+            <div class="space-y-4 max-w-3xl mx-auto">
+                <h3 class="text-lg font-bold text-slate-800 mb-3 px-2 border-l-4 border-indigo-500">자주 묻는 질문 (FAQ)</h3>
+                
+                <div class="glass-card overflow-hidden group cursor-pointer" onclick="toggleAccordion(this)">
+                    <div class="w-full px-6 py-5 text-left font-semibold text-slate-700 flex justify-between items-center group-hover:text-indigo-600 transition-colors">
+                        <span>Q. 구조조정을 위한 절차인가요?</span>
+                        <svg class="w-5 h-5 transition-transform transform text-slate-400 group-hover:text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="accordion-content bg-indigo-50/30 px-6">
+                        <div class="pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                            <span class="font-bold text-indigo-600 bg-indigo-100 px-2 py-0.5 rounded">절대 아닙니다.</span><br><br>
+                            현재 신한정밀은 EV 전환과 북미 진출을 위해 오히려 <span class="underline decoration-indigo-300 underline-offset-2 font-semibold">숙련된 기술 인재가 더 많이 필요한 상황</span>입니다. 이번 프로젝트는 핵심 인재들이 떠나지 않고 회사와 함께 성장할 수 있도록 보상과 처우를 개선하기 위함입니다.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card overflow-hidden group cursor-pointer" onclick="toggleAccordion(this)">
+                    <div class="w-full px-6 py-5 text-left font-semibold text-slate-700 flex justify-between items-center group-hover:text-indigo-600 transition-colors">
+                        <span>Q. 회사가 팔리면 보상 제도는 어떻게 되나요?</span>
+                        <svg class="w-5 h-5 transition-transform transform text-slate-400 group-hover:text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="accordion-content bg-indigo-50/30 px-6">
+                        <div class="pb-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                            기존의 고용과 처우는 승계되는 것이 원칙입니다.<br><br>
+                            더 나아가, 회사의 가치 상승분을 직원들과 공유하기 위한 <span class="font-bold text-indigo-600">성장형 인센티브(Retention Bonus, Phantom Stock 등)</span>를 새롭게 도입할 예정입니다. 회사의 주인이 바뀐 것이 아니라, 여러분의 '기회'가 확장된 것입니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-800 text-slate-400 py-10 text-center text-xs border-t-4 border-indigo-600">
+        <p class="mb-2 font-semibold text-slate-300 text-sm">본 자료는 내부 공유용이며, 무단 유출을 금지합니다.</p>
+        <p class="opacity-60">© 2025 Wisdom&Co. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // --- Tab Switching Logic ---
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('block', 'fade-in');
+            });
+            const activeTab = document.getElementById(tabId);
+            activeTab.classList.remove('hidden');
+            activeTab.classList.add('block', 'fade-in');
+
+            document.querySelectorAll('.nav-pill').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if(tabId === 'tab-vision') renderHistoryChart();
+            if(tabId === 'tab-roadmap') renderGanttChart();
+        }
+
+        // --- Accordion Logic ---
+        function toggleAccordion(btn) {
+            const content = btn.querySelector('.accordion-content');
+            const icon = btn.querySelector('svg');
+            
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                document.querySelectorAll('.accordion-content').forEach(el => {
+                    el.classList.remove('open');
+                    el.parentElement.querySelector('svg').style.transform = 'rotate(0deg)';
+                });
+                content.classList.add('open');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // --- Charts ---
+        let historyChartInstance = null;
+        let ganttChartInstance = null;
+
+        function renderHistoryChart() {
+            const ctx = document.getElementById('historyChart');
+            if (!ctx || historyChartInstance) return;
+
+            historyChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['2011 (도약기)', '2022 (최고 실적)', '2024 (위기)', 'Future (정상화)'],
+                    datasets: [{
+                        label: '매출액 (단위: 억 원)',
+                        data: [420, 666, 195, 600],
+                        backgroundColor: [
+                            'rgba(148, 163, 184, 0.4)', 
+                            'rgba(79, 70, 229, 0.7)',   
+                            'rgba(239, 68, 68, 0.6)',   
+                            'rgba(16, 185, 129, 0.8)'   
+                        ],
+                        borderRadius: 8,
+                        barThickness: 50,
+                        borderSkipped: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        datalabels: {
+                            anchor: 'end',
+                            align: 'top',
+                            formatter: (value) => value + '억',
+                            font: { weight: 'bold', color: '#475569' },
+                            offset: 5
+                        }
+                    },
+                    scales: {
+                        y: { display: false, max: 800 },
+                        x: { grid: { display: false }, ticks: { font: { family: "'Pretendard', sans-serif", size: 11 } } }
+                    }
+                },
+                plugins: [ChartDataLabels]
+            });
+        }
+
+        // --- GANTT CHART (FIXED: Permanent Labels) ---
+        function renderGanttChart() {
+            const ctx = document.getElementById('ganttChart');
+            if (!ctx || ganttChartInstance) return;
+
+            const phaseBackgroundPlugin = {
+                id: 'phaseBackgroundPlugin',
+                beforeDatasetsDraw(chart) {
+                    const { ctx, chartArea: { top, bottom, left, right }, scales: { y } } = chart;
+                    ctx.save();
+                    const phases = [
+                        { start: 0, end: 4, color: 'rgba(79, 70, 229, 0.03)' }, 
+                        { start: 5, end: 7, color: 'rgba(16, 185, 129, 0.03)' },
+                        { start: 8, end: 12, color: 'rgba(139, 92, 246, 0.03)' }
+                    ];
+                    const rowHeight = (bottom - top) / y.getLabels().length;
+                    phases.forEach(p => {
+                        const yStart = top + (p.start * rowHeight);
+                        const yEnd = top + ((p.end + 1) * rowHeight);
+                        ctx.fillStyle = p.color;
+                        ctx.fillRect(left, yStart, right - left, yEnd - yStart);
+                    });
+                    ctx.restore();
+                }
+            };
+
+            const ganttLabels = [
+                '1-1. 킥오프', '1-2. 설문 설계', '1-3. 전사 서베이', '1-4. 핵심 인재상 정의', '1-5. 중간 보고',
+                '2-1. 1:1 심층 인터뷰', '2-2. 중국 법인 스크리닝', '2-3. 조직 재설계',
+                '3-1. 인센티브 플랜', '3-2. 인력 효율화 로드맵', '3-3. KPI/성과관리', '3-4. 경영리뷰 체계', '3-5. 최종 보고'
+            ];
+
+            ganttChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ganttLabels,
+                    datasets: [
+                        {
+                            label: 'Start',
+                            data: [1, 3, 10, 17, 25, 30, 30, 50, 57, 59, 67, 78, 81],
+                            backgroundColor: 'transparent',
+                            barThickness: 20,
+                            datalabels: { display: false } // Hide labels for invisible bars
+                        },
+                        {
+                            label: 'Duration',
+                            data: [2, 7, 7, 8, 5, 20, 20, 7, 2, 8, 11, 3, 5],
+                            backgroundColor: (ctx) => {
+                                const index = ctx.dataIndex;
+                                if (index <= 4) return 'rgba(79, 70, 229, 0.8)';
+                                if (index <= 7) return 'rgba(16, 185, 129, 0.8)';
+                                return 'rgba(139, 92, 246, 0.8)';
+                            },
+                            borderRadius: 4,
+                            barThickness: 20,
+                            datalabels: {
+                                color: 'white',
+                                font: { weight: 'bold', size: 10 },
+                                formatter: (value) => value + '일',
+                                display: 'auto' // Hide if too small to fit
+                            }
+                        }
+                    ]
+                },
+                plugins: [phaseBackgroundPlugin, ChartDataLabels], // Plugin registered here
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { 
+                            stacked: true, 
+                            min: 0, 
+                            max: 90,
+                            grid: { color: '#f1f5f9' },
+                            title: { display: true, text: 'Days (Day 1 ~ Day 85)' }
+                        },
+                        y: { 
+                            stacked: true,
+                            grid: { display: false },
+                            ticks: { font: { size: 12, family: "'Pretendard', sans-serif" } }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            filter: (item) => item.datasetIndex === 1,
+                            callbacks: {
+                                title: (items) => items[0].label,
+                                label: (ctx) => {
+                                    const start = ctx.chart.data.datasets[0].data[ctx.dataIndex];
+                                    const duration = ctx.raw;
+                                    return `기간: Day ${start} ~ ${start + duration} (${duration}일간)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            renderHistoryChart();
+        });
+
+    </script>
+</body>
+</html>
